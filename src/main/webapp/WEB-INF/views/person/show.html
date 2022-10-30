@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${person.getLFP()}">Person Info</title>
+</head>
+
+<body>
+<a th:text="'ФИО: ' + ${person.getLFP()}">text</a>
+<br>
+<a th:text="'Год рождения: ' + ${person.getYearOfBirth()}">text</a>
+<br>
+
+<hr>
+
+    <div th:if="${personBooks.size()==0}">
+        <p th:text="'У человека нет книг'">пусто</p>
+    </div>
+
+    <div th:if="not ${personBooks.size()==0}">
+        <p th:text="'Книги:'">Книги</p>
+
+        <div th:each="book:${personBooks}">
+
+            <a th:style="${book.isOverdue() ? 'color:red' : 'color:black'}"
+               th:href="@{/books/{id}(id=${book.getId()})}"
+               th:text="${book.getTitle()} +', ' + ${book.getAuthor()} +', ' + ${book.getYear()}">value</a>
+        </div>
+
+    </div>
+
+<hr>
+
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="Редактировать"/>
+</form>
+
+<div th:if="${personBooks.size()==0}">
+    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+        <input type="submit" value="Удалить"/>
+    </form>
+</div>
+
+<div th:if="not ${personBooks.size()==0}">
+    <p th:text="'Удаление невозможно, у человека ещё есть книги на руках'">пусто</p>
+</div>
+
+</body>
+</html>

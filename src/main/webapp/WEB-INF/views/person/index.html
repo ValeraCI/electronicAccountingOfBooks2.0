@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все люди</title>
+</head>
+<body>
+
+<hr>
+
+<a th:href="@{/people?pageNumber=0}">Просмотреть список всех людей</a>
+<br>
+<a th:href="@{/people?receive=busy&pageNumber=0}">Просмотреть список людей с книгами</a>
+<br>
+<a th:href="@{/people?receive=free&pageNumber=0}">Просмотреть список людей без книг</a>
+
+<hr>
+
+<p th:text="${titleText}">text</p>
+<div th:each="person:${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
+       th:text="${person.getLFP()} +', ' + ${person.getYearOfBirth()}">value</a>
+</div>
+<div th:if="${people.size()==0}">
+    <p>Список пуст<p>
+</div>
+<hr>
+<form method="GET" action="/people/new">
+    <input type="submit" value="Добавить человека"/>
+</form>
+<hr>
+
+<a th:href="@{/people?receive={receiveIndex}&pageNumber={pageNumber}(receiveIndex=${receive}, pageNumber=${prev})}">Предыдущая страница</a>
+<a th:href="@{/people?receive={receiveIndex}&pageNumber={pageNumber}(receiveIndex=${receive}, pageNumber=${next})}">Следующая страница</a>
+
+
+<hr>
+<form method="GET" action=/books?pageNumber=0&sort_by_year=true}>
+    <input type="submit" value="Просмотреть список книг"/>
+</form>
+
+</body>
+</html>

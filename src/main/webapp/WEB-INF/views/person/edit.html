@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${person.getLFP()} + '(изменение)'">Book Info</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+
+  <div style="color:red" th:if="${#fields.hasErrors('LFP')}" th:errors="*{LFP}"></div>
+  <label for="LFP">ФИО</label>
+  <input type="text" th:field="*{LFP}" id = LFP>
+
+  <br>
+
+  <div style="color:red" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}"></div>
+  <label for="yearOfBirth">Год рождения</label>
+  <input type="number" step="1" min="1925" value="1925" th:field="*{yearOfBirth}" id = yearOfBirth>
+
+  <br>
+
+  <input type="submit" value="Сохранить изменения"/>
+</form>
+</body>
+</html>
