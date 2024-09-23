@@ -11,12 +11,12 @@ import java.util.Calendar;
 
 
 @Entity
-@Table(name = "Book")
+@Table(name = "lab_Book")
 public class Book {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotEmpty(message = "Название не может быть пустым")
@@ -30,8 +30,8 @@ public class Book {
     private String author;
 
     @Min(value = 1800, message = "Книга слишком стара")
-    @Column(name = "year")
-    private int year;
+    @Column(name = "publication_year")
+    private int publicationYear;
 
     @ManyToOne()
     @JoinColumn(name = "person_id", referencedColumnName = "id")
@@ -69,12 +69,12 @@ public class Book {
         this.author = author;
     }
 
-    public int getYear() {
-        return year;
+    public int getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public Person getOwner() {
@@ -107,7 +107,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", year=" + year +
+                ", publicationYear=" + publicationYear +
                 '}';
     }
 }

@@ -26,7 +26,7 @@ public class PersonValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
 
-        if(personService.getByLFP(person.getLFP()) != null){
+        if (personService.getByLFP(person.getLFP()) != null) {
             errors.rejectValue("LFP", "", "Такой пользователь уже существует");
         }
     }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
-    public Person getPersonByLFP(String LFP);
+    Person getPersonByLFP(String LFP);
 }

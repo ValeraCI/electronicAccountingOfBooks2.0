@@ -24,7 +24,7 @@
 
             <a th:style="${book.isOverdue() ? 'color:red' : 'color:black'}"
                th:href="@{/books/{id}(id=${book.getId()})}"
-               th:text="${book.getTitle()} +', ' + ${book.getAuthor()} +', ' + ${book.getYear()}">value</a>
+               th:text="${book.getTitle()} +', ' + ${book.getAuthor()} +', ' + ${book.getPublicationYear()}">value</a>
         </div>
 
     </div>

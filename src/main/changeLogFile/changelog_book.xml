@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2" author="Cidik">
+        <createTable tableName="lab_Book">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="title" type="varchar(200)">
+                <constraints nullable="false" />
+            </column>
+            <column name="author" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="publication_year" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="free" type="boolean" defaultValue="true"/>
+            <column name="person_id" type="int">
+                <constraints foreignKeyName="fk_person_id" references="lab_Person(id)" />
+            </column>
+            <column name="rental_start_date" type="date"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

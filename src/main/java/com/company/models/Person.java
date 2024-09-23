@@ -1,8 +1,6 @@
 package com.company.models;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -10,16 +8,16 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "lab_Person")
 public class Person {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotEmpty(message = "ФИО не должно быть пустым")
-    @Size(min = 6, max=50, message = "Длинна ФИО от 6 до 50 символов")
+    @Size(min = 6, max = 50, message = "Длинна ФИО от 6 до 50 символов")
     @Column(name = "LFP")
     private String LFP;
 
